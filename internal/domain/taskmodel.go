@@ -7,5 +7,5 @@ type Task struct {
 	Title       string    `json:"title"`
 	Description string    `json:"description"`
 	Done        bool      `json:"done"`
-	CreatedAt   time.Time `json:"created_at"`
+	CreatedAt   time.Time `json:"created_at" swaggertype:"string" format:"date-time"`
 }

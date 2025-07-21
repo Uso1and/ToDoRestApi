@@ -1,0 +1,47 @@
+definitions:
+  domain.Task:
+    properties:
+      created_at:
+        format: date-time
+        type: string
+      description:
+        type: string
+      done:
+        type: boolean
+      id:
+        type: integer
+      title:
+        type: string
+    type: object
+info:
+  contact: {}
+paths:
+  /tasks:
+    post:
+      consumes:
+      - application/json
+      description: Добавление Задачи
+      parameters:
+      - description: Данные задачи
+        in: body
+        name: task
+        required: true
+        schema:
+          $ref: '#/definitions/domain.Task'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/domain.Task'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Создание Таски
+      tags:
+      - task
+swagger: "2.0"
