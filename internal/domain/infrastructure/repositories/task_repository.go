@@ -58,3 +58,23 @@ func (r *TaskRepository) UpdateTask(c context.Context, task *domain.Task) error 
 	}
 	return nil
 }
+
+func (r *TaskRepository) DeleteTask(c context.Context, taskID int) error {
+
+	query := `DELETE FROM tasks WHERE id = $1`
+
+	result, err := r.db.ExecContext(c, query, taskID)
+
+	if err != nil {
+		return fmt.Errorf("failet to delite task: %v", err)
+	}
+
+	rowsAffect, err := result.RowsAffected()
+	if err != nil {
+		return fmt.Errorf("failet to get rows affect: %w", err)
+	}
+	if rowsAffect == 0 {
+		return sql.ErrNoRows
+	}
+	return nil
+}

@@ -118,3 +118,30 @@ func (h *TaskHandler) UpdateTaskHandler(c *gin.Context) {
 
 	c.JSON(http.StatusOK, updatedTask)
 }
+
+// @Summary Удалить задачу
+// @Description Удаление задачи по ID
+// @Tags task
+// @Accept json
+// @Produce json
+// @Param id path int true "ID задачи"
+// @Success 204
+// @Failure 400 {object} map[string]string
+// @Failure 500 {object} map[string]string
+// @Router /tasks/{id} [delete]
+func (h *TaskHandler) DeleteTaskHandler(c *gin.Context) {
+	idSrt := c.Param("id")
+
+	taskID, err := strconv.Atoi(idSrt)
+
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "invalid task ID"})
+		return
+	}
+
+	if err := h.taskRepo.DeleteTask(c.Request.Context(), taskID); err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		return
+	}
+	c.Status(http.StatusNoContent)
+}

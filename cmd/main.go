@@ -32,5 +32,7 @@ func main() {
 	r.GET("/tasks/:id", taskHandler.GetTaskHandler)
 
 	r.PUT("/tasks/:id", taskHandler.UpdateTaskHandler)
+
+	r.DELETE("/tasks/:id", taskHandler.DeleteTaskHandler)
 	r.Run(":8080")
 }

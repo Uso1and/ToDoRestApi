@@ -45,6 +45,36 @@ paths:
       tags:
       - task
   /tasks/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Удаление задачи по ID
+      parameters:
+      - description: ID задачи
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "204":
+          description: No Content
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Удалить задачу
+      tags:
+      - task
     get:
       consumes:
       - application/json
