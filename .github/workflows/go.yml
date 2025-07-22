@@ -40,6 +40,17 @@ jobs:
       - name: Install dependencies
         run: go mod download
 
+      - name: Setup PostgreSQL
+        run: |
+          psql "user=postgres password=root dbname=test_todo sslmode=disable" -c "
+            CREATE TABLE IF NOT EXISTS tasks (
+              id SERIAL PRIMARY KEY,
+              title TEXT NOT NULL,
+              description TEXT,
+              done BOOLEAN DEFAULT false,
+              created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+            );"
+
       - name: Run tests
         run: go test -v ./...
         env:
@@ -48,3 +59,9 @@ jobs:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: root
           POSTGRES_DB: test_todo
+
+      - name: Cleanup PostgreSQL (optional)
+        if: always()
+        run: |
+          psql "user=postgres password=root dbname=test_todo sslmode=disable" -c "
+            DROP TABLE IF EXISTS tasks;"
