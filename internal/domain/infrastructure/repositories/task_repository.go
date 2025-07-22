@@ -39,7 +39,7 @@ func (r *TaskRepository) CreateTask(c context.Context, task *domain.Task) error 
 
 func (r *TaskRepository) GetTask(c context.Context, taskID int) (*domain.Task, error) {
 
-	task := &domain.Task{}
+	task := &domain.Task{ID: taskID}
 
 	query := `SELECT title, description, done, created_at FROM tasks WHERE id = $1`
 
