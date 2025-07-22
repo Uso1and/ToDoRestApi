@@ -1,0 +1,38 @@
+package main
+
+import (
+	"ToDoRestApi/internal/app/handlers"
+	"ToDoRestApi/internal/domain/infrastructure/database"
+	"ToDoRestApi/internal/domain/infrastructure/repositories"
+	"log"
+
+	_ "ToDoRestApi/docs"
+
+	"github.com/gin-gonic/gin"
+	swaggerFiles "github.com/swaggo/files"
+	ginSwagger "github.com/swaggo/gin-swagger"
+)
+
+func main() {
+	if err := database.Init(); err != nil {
+		log.Fatalf("Ошибка подключения к бд: %v", err)
+	}
+
+	taskRepo := repositories.NewTaskRepository(database.DB)
+	taskHandler := handlers.NewTaskHandler(taskRepo)
+
+	r := gin.Default()
+
+	r.LoadHTMLGlob("templates/*")
+	r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
+	r.GET("/", handlers.IndexPage)
+
+	r.POST("/tasks", taskHandler.CreateTask)
+
+	r.GET("/tasks/:id", taskHandler.GetTaskHandler)
+
+	r.PUT("/tasks/:id", taskHandler.UpdateTaskHandler)
+
+	r.DELETE("/tasks/:id", taskHandler.DeleteTaskHandler)
+	r.Run(":8080")
+}
