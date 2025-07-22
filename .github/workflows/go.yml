@@ -40,9 +40,21 @@ jobs:
       - name: Install dependencies
         run: go mod download
 
-      - name: Setup PostgreSQL
+      - name: Install PostgreSQL client
+        run: sudo apt-get -yqq install postgresql-client
+
+      - name: Wait for PostgreSQL
         run: |
-          psql "user=postgres password=root dbname=test_todo sslmode=disable" -c "
+          for i in {1..10}; do
+            if pg_isready -h localhost -p 5432 -U postgres -d test_todo; then
+              break
+            fi
+            sleep 2
+          done
+
+      - name: Create database tables
+        run: |
+          PGPASSWORD=root psql -h localhost -p 5432 -U postgres -d test_todo -c "
             CREATE TABLE IF NOT EXISTS tasks (
               id SERIAL PRIMARY KEY,
               title TEXT NOT NULL,
@@ -59,9 +71,3 @@ jobs:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: root
           POSTGRES_DB: test_todo
-
-      - name: Cleanup PostgreSQL (optional)
-        if: always()
-        run: |
-          psql "user=postgres password=root dbname=test_todo sslmode=disable" -c "
-            DROP TABLE IF EXISTS tasks;"
