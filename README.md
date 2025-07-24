@@ -35,11 +35,11 @@ REST API service for task management (ToDo), written in Go using Gin framework a
    cd ToDoRestApi
 
 2. Set up environment variables (or use default values):
-    export POSTGRES_HOST=localhost
-    export POSTGRES_PORT=5432
-    export POSTGRES_USER=postgres
-    export POSTGRES_PASSWORD=root
-    export POSTGRES_DB=todo
+    - export POSTGRES_HOST=localhost
+    - export POSTGRES_PORT=5432
+    - export POSTGRES_USER=postgres
+    - export POSTGRES_PASSWORD=root
+    - export POSTGRES_DB=todo
 
 3. Start PostgreSQL and create database:
     docker-compose up -d db
@@ -62,5 +62,6 @@ After starting the application, API documentation is available at:
 To run tests:
 
 go test -v ./...
-Tests use test_todo database (configured in GitHub Action
+
+Tests use test_todo database (configured in GitHub Action).
 
