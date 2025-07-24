@@ -13,7 +13,7 @@ REST API service for task management (ToDo), written in Go using Gin framework a
 
 ## 🛠 Technologies
 
-- **Go 1.21+** - main programming language
+- **Go 1.24+** - main programming language
 - **Gin** - HTTP web framework
 - **PostgreSQL** - database
 - **Docker** - containerization
