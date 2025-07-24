@@ -55,8 +55,8 @@ docker-compose up -d --build
 
 ### 📚 API Documentation
 After starting the application, API documentation is available at:
-**Swagger UI: http://localhost:8080/swagger/index.html**
-**Swagger JSON: http://localhost:8080/swagger/doc.json**
+**Swagger UI:** http://localhost:8080/swagger/index.html
+**Swagger JSON:** http://localhost:8080/swagger/doc.json
 
 ### 🧪 Testing
 To run tests:
