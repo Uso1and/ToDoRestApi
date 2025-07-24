@@ -32,6 +32,7 @@ REST API service for task management (ToDo), written in Go using Gin framework a
 
 1. Clone the repository:
    git clone https://github.com/yourusername/ToDoRestApi.git
+   
    cd ToDoRestApi
 
 2. Set up environment variables (or use default values):
