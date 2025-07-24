@@ -24,15 +24,15 @@ REST API service for task management (ToDo), written in Go using Gin framework a
 
 ### Prerequisites
 
-- Installed Go (version 1.21 or higher)
-- PostgreSQL (version 15 or higher)
+- Installed Go (version 1.24 or higher)
+- PostgreSQL (version 17 or higher)
 - Docker (optional)
 
 ### Local Setup
 
 1. Clone the repository:
    git clone https://github.com/yourusername/ToDoRestApi.git
-   
+
    cd ToDoRestApi
 
 2. Set up environment variables (or use default values):
