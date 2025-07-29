@@ -2,7 +2,7 @@
 
 REST API service for task management (ToDo), written in Go using Gin framework and PostgreSQL.
 
-## 📌 Features
+## Features
 
 - Create, read, update and delete tasks (CRUD)
 - API documentation with Swagger
@@ -20,7 +20,7 @@ REST API service for task management (ToDo), written in Go using Gin framework a
 - **Swagger** - API documentation
 - **GitHub Actions** - CI/CD
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
 
@@ -54,12 +54,12 @@ REST API service for task management (ToDo), written in Go using Gin framework a
 
 docker-compose up -d --build
 
-### 📚 API Documentation
+### API Documentation
 After starting the application, API documentation is available at:
 - **Swagger UI:** - http://localhost:8080/swagger/index.html
 - **Swagger JSON:** - http://localhost:8080/swagger/doc.json
 
-### 🧪 Testing
+### Testing
 To run tests:
 
 go test -v ./...
