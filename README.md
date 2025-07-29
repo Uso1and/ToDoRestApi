@@ -11,7 +11,7 @@ REST API service for task management (ToDo), written in Go using Gin framework a
 - GitHub Actions integration for CI/CD
 - HTML templates support
 
-## 🛠 Technologies
+## Technologies
 
 - **Go 1.24+** - main programming language
 - **Gin** - HTTP web framework
